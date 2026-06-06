@@ -56,10 +56,13 @@
 
 **Anti-persona:** Clínicas que compram equipamentos descartáveis de baixíssimo custo e preferem trocar a manter
 
+## Posicionamento Percebido
+A Healtech deve ser percebida como uma empresa técnica, profissional e confiável, especializada em manutenção odontológica, que atua como **parceira estratégica das clínicas** e garante continuidade operacional com responsabilidade.
+
 ## Brand Voice
-**Tone:** Técnico mas acessível, direto, confiável
-**Style:** Objetivo, sem jargão excessivo, foco em resultado prático
-**Personality:** Especialista, ágil, confiável, regional
+**Tone:** Técnico e profissional, mas próximo — fala de igual para igual com o gestor da clínica
+**Style:** Direto, sem jargão excessivo, foco em continuidade operacional e resultado prático
+**Personality:** Confiável, especialista, responsável, parceiro estratégico
 
 ## Goals
 **Business goal:** Capturar leads B2B de clínicas e consultórios odontológicos em Guarapuava/PR
