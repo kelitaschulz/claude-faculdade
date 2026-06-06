@@ -59,9 +59,21 @@
 ## Posicionamento Percebido
 A Healtech deve ser percebida como uma empresa técnica, profissional e confiável, especializada em manutenção odontológica, que atua como **parceira estratégica das clínicas** e garante continuidade operacional com responsabilidade.
 
+## Missão / Visão / Valores
+**Missão:** Garantir o funcionamento seguro e eficiente dos equipamentos odontológicos, oferecendo manutenção preventiva e corretiva com responsabilidade técnica.
+**Visão:** Ser referência regional em manutenção odontológica, reconhecida pela confiabilidade e profissionalismo.
+**Valores:** Responsabilidade técnica · Compromisso com segurança · Organização · Ética profissional · Transparência
+
+## Storytelling / Origem
+A Healtech nasce da experiência técnica em engenharia clínica, com foco específico em equipamentos odontológicos. Iniciou atendendo contratos públicos e expandiu para clínicas privadas. Diferencial: atuação estruturada, foco em prevenção e visão de crescimento para comercialização futura de equipamentos.
+
+## Personalidade da Marca
+✔ Profissional e confiável · Séria e institucional · Alto valor agregado
+✘ Jovem demais · Divertida · Informal excessiva
+
 ## Brand Voice
-**Tone:** Técnico e profissional, mas próximo — fala de igual para igual com o gestor da clínica
-**Style:** Direto, sem jargão excessivo, foco em continuidade operacional e resultado prático
+**Tone:** Formal, racional, sério e objetivo, técnico acessível
+**Style:** Direto, sem jargão excessivo, foco em continuidade operacional — não emocional, não vendedor agressivo
 **Personality:** Confiável, especialista, responsável, parceiro estratégico
 
 ## Goals
