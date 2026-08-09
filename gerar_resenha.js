@@ -4,10 +4,12 @@ const {
 const fs = require('fs');
 
 const FONT = 'Arial';
-const LINE = 360;          // espacamento 1,5 (240 = simples)
+const LINE = 360;          // corpo do texto: espacamento 1,5
+const SIMPLES = 240;       // cabecalho e referencias: espacamento simples (ABNT)
 const INDENT = 709;        // recuo de primeira linha: 1,25 cm
 const CM = 567;
 
+// --- corpo do texto: justificado, recuo de 1,25 cm, entrelinhas 1,5 ---
 const corpo = (texto, opts = {}) => new Paragraph({
   alignment: AlignmentType.JUSTIFIED,
   spacing: { line: LINE, after: 0 },
@@ -15,179 +17,171 @@ const corpo = (texto, opts = {}) => new Paragraph({
   children: [new TextRun({ text: texto, font: FONT, size: 24 })],
 });
 
-const titulo = (texto) => new Paragraph({
+// --- cabecalho institucional: esquerda, simples ---
+const inst = (texto) => new Paragraph({
   alignment: AlignmentType.LEFT,
-  spacing: { line: LINE, before: 140, after: 0 },
-  children: [new TextRun({ text: texto, font: FONT, size: 24, bold: true })],
-});
-
-const tituloPrincipal = (texto) => new Paragraph({
-  alignment: AlignmentType.CENTER,
-  spacing: { line: LINE, after: 140 },
-  children: [new TextRun({ text: texto, font: FONT, size: 24, bold: true })],
-});
-
-const cabecalho = (texto) => new Paragraph({
-  alignment: AlignmentType.RIGHT,
-  spacing: { line: LINE, after: 0 },
+  spacing: { line: SIMPLES, after: 0 },
   children: [new TextRun({ text: texto, font: FONT, size: 24 })],
 });
 
+// --- identificacao do aluno: direita, simples ---
+const aluno = (texto) => new Paragraph({
+  alignment: AlignmentType.RIGHT,
+  spacing: { line: SIMPLES, after: 0 },
+  children: [new TextRun({ text: texto, font: FONT, size: 24 })],
+});
+
+// --- titulo centralizado em caixa alta e negrito ---
+const tituloCentral = (texto, opts = {}) => new Paragraph({
+  alignment: AlignmentType.CENTER,
+  spacing: { line: LINE, before: opts.before || 0, after: opts.after || 0 },
+  children: [new TextRun({ text: texto, font: FONT, size: 24, bold: true })],
+});
+
+// --- referencias ABNT: esquerda, simples, uma linha em branco entre elas ---
 const ref = (texto) => new Paragraph({
   alignment: AlignmentType.LEFT,
-  spacing: { line: LINE, after: 0 },
+  spacing: { line: SIMPLES, after: 240 },
   children: [new TextRun({ text: texto, font: FONT, size: 24 })],
+});
+
+const vazio = (pontos) => new Paragraph({
+  spacing: { line: SIMPLES, after: 0 },
+  children: [new TextRun({ text: '', font: FONT, size: pontos || 24 })],
 });
 
 const filhos = [
-  cabecalho('Disciplina: Ética'),
-  cabecalho('Aluna: [seu nome completo]'),
+  // ---------- CABECALHO INSTITUCIONAL ----------
+  inst('[Nome da Universidade]'),
+  inst('[Faculdade ou Centro]'),
+  inst('[Departamento ou Curso]'),
+  inst('Disciplina: Ética'),
+  inst('Professor(a): [nome do(a) professor(a)]'),
 
-  tituloPrincipal('A infância como mercado: uma leitura ética de Criança, a Alma do Negócio'),
+  vazio(),
 
+  // ---------- IDENTIFICACAO ----------
+  aluno('[Seu nome completo]'),
+
+  vazio(),
+
+  // ---------- TITULO ----------
+  tituloCentral('RESENHA CRÍTICA', { after: 240 }),
+
+  // ---------- DADOS BIBLIOGRAFICOS DA OBRA RESENHADA ----------
   corpo(
-    'RENNER, Estela (dir.). Criança, a alma do negócio. São Paulo: Maria Farinha Filmes, 2008. ' +
-    '1 vídeo (49 min).',
+    'RENNER, Estela. Criança, a alma do negócio. São Paulo: Maria Farinha Filmes, 2008. ' +
+    '1 vídeo (49 min), son., color. Disponível em: https://www.youtube.com/watch?v=ur9lIf4RaZ4. ' +
+    'Acesso em: 9 ago. 2026.',
     { semRecuo: true }
   ),
 
-  titulo('1. Introdução'),
+  vazio(),
+
+  // ---------- P1: SOBRE A AUTORA ----------
   corpo(
-    'Entrei em Criança, a Alma do Negócio esperando um filme sobre propaganda e saí pensando no que a ' +
-    'gente faz com quem ainda não sabe se defender. O documentário de Estela Renner é de 2008, e a ' +
-    'distância entre a televisão que ele retrata e o celular que as crianças usam hoje é enorme. Mesmo ' +
-    'assim o argumento continua de pé: a publicidade infantil é difícil de justificar eticamente porque ' +
-    'depende de uma coisa só, que é a criança não perceber que está sendo convencida.'
+    'Estela Renner é diretora e roteirista, cofundadora da Maria Farinha Filmes, produtora paulistana ' +
+    'especializada em documentários de impacto social. Passou sete anos nos Estados Unidos, onde concluiu ' +
+    'mestrado em Motion Pictures e trabalhou escrevendo e dirigindo séries de televisão, e ao voltar ao ' +
+    'Brasil passou a dedicar sua obra a causas sociais e ambientais. Sua filmografia se concentra na ' +
+    'infância: além de Criança, a Alma do Negócio, de 2008, ela assina Muito Além do Peso, de 2012, sobre ' +
+    'obesidade infantil, e O Começo da Vida, de 2016, sobre os primeiros anos de desenvolvimento humano. ' +
+    'Também dirigiu a série Aruanas. Seus dois primeiros documentários foram vistos por mais de dois ' +
+    'milhões de pessoas e alimentaram o debate público sobre a regulação da publicidade dirigida a crianças.'
   ),
 
-  titulo('2. O que o filme mostra'),
+  // ---------- P2 e P3: RESUMO ----------
   corpo(
-    'Logo no início, entre 1 e 3 minutos, aparece o dado que organiza o filme: cerca de 80% das decisões de ' +
-    'compra de uma casa passam pela criança (RENNER, 2008). Isso não descreve gosto infantil, descreve ' +
-    'função: a criança virou canal de venda para o orçamento da família.'
+    'O documentário resenhado tem 49 minutos e dispensa narração, alternando depoimentos de crianças, ' +
+    'entrevistas com especialistas e falas de profissionais de marketing. Logo no início, entre 1 e 3 ' +
+    'minutos, aparece o dado que organiza a obra: cerca de 80% das decisões de compra de uma casa passam ' +
+    'pela criança. Isso não descreve gosto infantil, descreve função, porque a criança é tratada como canal ' +
+    'de venda para o orçamento da família. Entre 5 e 8 minutos o filme mostra que a publicidade não vende o ' +
+    'produto, vende pertencimento, já que a promessa não é o brinquedo e sim ser aceito por causa dele. ' +
+    'Bauman (2008) descreve esse movimento ao mostrar uma sociedade em que as pessoas viram mercadoria e se ' +
+    'validam pelo que exibem.'
   ),
   corpo(
-    'O trecho mais forte está entre 5 e 8 minutos, quando fica claro que a publicidade não vende o produto, ' +
-    'vende pertencimento. A promessa não é o brinquedo, é ser aceito por causa dele. Bauman (2008) descreve ' +
-    'esse movimento ao mostrar uma sociedade em que as pessoas viram mercadoria e se validam pelo que ' +
-    'exibem.'
-  ),
-  corpo(
-    'O filme então acumula prova. Dos 13 aos 16 minutos aparecem crianças cercadas de brinquedos que nem ' +
-    'conseguem usar. Entre 18 e 20 minutos, com a psicóloga Julia Marques, a discussão vai para a pressão ' +
-    'do grupo: o consumo decide quem entra e quem fica de fora, e o resultado é uma padronização de festas ' +
-    'e roupas que sufoca o que diferencia uma criança da outra.'
-  ),
-
-  titulo('3. Os pais também estão no alvo'),
-  corpo(
-    'Entre 21 e 23 minutos o documentário olha para os pais e fala em culpa e falta de tempo, com o presente ' +
-    'ocupando o lugar da presença (RENNER, 2008). Concordo com o diagnóstico, mas o filme para cedo: ' +
-    'descreve o comportamento dos pais sem perguntar o que o produziu.'
-  ),
-  corpo(
-    'Quem cede não está sendo permissivo por preguiça, está comprimido por uma jornada que não deixa espaço ' +
-    'para muito mais. Um adulto que sai cedo, volta à noite e ainda leva serviço para o fim de semana não ' +
-    'tem como disputar atenção com uma tela ligada o dia inteiro. Comprar vira a forma disponível de dizer ' +
-    'que se importa. Chamar isso de fracasso individual é ignorar que a mesma lógica que vende para a ' +
-    'criança é a que consome o tempo do pai.'
-  ),
-  corpo(
-    'Por isso me parece equivocado tratar a família como linha de defesa principal. Ela é o elo mais fraco ' +
-    'da corrente, e é por isso que o mercado mira nela. Dizer que basta os pais dizerem não converte um ' +
-    'problema estrutural em falha de caráter, e esse deslocamento pesa sobre quem tem menos tempo e menos ' +
-    'dinheiro. Acompanhar é dever, mas exigir que a família resolva sozinha é passar ao mais fraco a ' +
-    'responsabilidade do mais forte.'
+    'A partir daí a obra acumula evidência. Dos 13 aos 16 minutos aparecem crianças cercadas de brinquedos ' +
+    'que nem conseguem usar. Entre 18 e 20 minutos, com a psicóloga Julia Marques, a discussão vai para a ' +
+    'pressão do grupo, mostrando que o consumo decide quem entra e quem fica de fora e produz uma ' +
+    'padronização de festas e roupas. Entre 21 e 23 minutos o filme trata dos pais, da culpa e da falta de ' +
+    'tempo, com o presente ocupando o lugar da presença. Dos 36 aos 38 minutos entra a saúde, ligando ' +
+    'publicidade de ultraprocessado, sedentarismo e obesidade infantil. O trecho entre 40 e 44 minutos é o ' +
+    'mais político da obra e dirige sua crítica ao CONAR.'
   ),
 
-  titulo('4. Da televisão para a tela do celular'),
+  // ---------- P4 a P7: POSICIONAMENTO ----------
   corpo(
-    'É aqui que o filme mostra a idade. Em 2008 o comercial tinha moldura: começava, terminava e ocupava um ' +
-    'bloco separado, coisa que dava para ensinar uma criança a reconhecer. Essa borda sumiu, e hoje a ' +
-    'publicidade não interrompe o conteúdo, ela é o conteúdo.'
+    'O ponto mais forte do filme é formal: ele não precisa argumentar, basta mostrar. As falas dos ' +
+    'profissionais de marketing são mais desconfortáveis do que qualquer cena com criança, porque não há ' +
+    'vilania ali, há competência técnica descrevendo com naturalidade a exploração de uma vulnerabilidade. ' +
+    'Meu principal reparo, porém, está no tratamento dado às famílias. A obra descreve o comportamento dos ' +
+    'pais sem perguntar o que o produziu. Quem cede não está sendo permissivo por preguiça, está comprimido ' +
+    'por uma jornada de trabalho que não deixa espaço para muito mais, e comprar vira a forma disponível de ' +
+    'dizer que se importa. Chamar isso de fracasso individual é ignorar que a mesma lógica econômica que ' +
+    'vende para a criança é a que consome o tempo do pai.'
   ),
   corpo(
-    'Mudou também de onde ela vem. Não é mais a campanha de uma grande marca em horário nobre, é um vídeo no ' +
-    'YouTube ou no TikTok feito por alguém que a criança acompanha todo dia. Luccas Neto é o caso mais ' +
-    'evidente no Brasil, com plateia de milhões de crianças e produtos licenciados próprios. O pai que ' +
-    'enfrenta o pedido do filho não negocia com um anunciante, e sim com alguém em quem a criança confia, e ' +
-    'que ela vê mais vezes por semana do que vê o próprio pai acordado.'
+    'O segundo reparo é de época, e não é culpa da direção. Em 2008 o comercial ainda tinha moldura, porque ' +
+    'começava, terminava e ocupava um bloco separado, coisa que dava para ensinar uma criança a reconhecer. ' +
+    'Essa borda sumiu. Hoje a publicidade não interrompe o conteúdo, ela é o conteúdo, e mudou também de ' +
+    'onde vem: não é mais a campanha de uma grande marca em horário nobre, é um vídeo no YouTube ou no ' +
+    'TikTok feito por alguém que a criança acompanha todo dia. Luccas Neto é o caso mais evidente no ' +
+    'Brasil, com plateia de milhões de crianças e produtos licenciados próprios. Os jogos operam por outro ' +
+    'mecanismo, com moedas virtuais que afastam o preço do valor e caixas de recompensa que repetem a ' +
+    'lógica de prêmio aleatório das máquinas de apostas.'
   ),
   corpo(
-    'Os jogos seguem outro caminho. Robux, V-Bucks e diamantes afastam o preço do valor. Caixa de recompensa ' +
-    'repete a lógica de prêmio aleatório das máquinas de apostas, passe de temporada fabrica pressa e skin ' +
-    'transforma pertencer em compra. É a mesma pressão de grupo dos 18 minutos do filme, agora num sistema ' +
-    'de pagamento aberto a qualquer hora.'
-  ),
-
-  titulo('5. Saúde e desafios éticos'),
-  corpo(
-    'Dos 36 aos 38 minutos o filme entra na saúde e o argumento vira dado. A ligação entre publicidade de ' +
-    'ultraprocessado, sedentarismo e obesidade infantil tira o assunto do terreno da escolha individual: ' +
-    'não foi a criança que escolheu mal, foi uma estratégia de marketing produzindo um problema de saúde ' +
-    'pública.'
-  ),
-  corpo(
-    'No plano ético, o problema mais básico é o consentimento. Qualquer relação de consumo ética supõe ' +
-    'alguém informado, capaz de avaliar e recusar, e criança não é isso. Vem depois a instrumentalização: ' +
-    'se a pessoa deve ser tratada sempre também como fim e nunca apenas como meio (KANT, 2009), aqueles 80% ' +
-    'da abertura dizem tudo. Mais grave, porém, é que essa publicidade só rende enquanto passa ' +
-    'despercebida. Uma prática que depende da ignorância de quem a recebe não sobreviveria se seus métodos ' +
-    'fossem ditos em voz alta, e é por isso que o filme incomoda sem acusar ninguém. Some a isso a coleta ' +
-    'de dados, que Zuboff (2021) descreve como base de um capitalismo que lucra prevendo comportamento, e a ' +
+    'No plano ético, o problema mais básico é o consentimento, porque qualquer relação de consumo ' +
+    'defensável supõe alguém informado, capaz de avaliar e recusar, e criança não é isso. Vem depois a ' +
+    'instrumentalização: se a pessoa deve ser tratada sempre também como fim e nunca apenas como meio ' +
+    '(KANT, 2009), aqueles 80% da abertura dizem tudo. A crítica ao CONAR também segue de pé e hoje tem ' +
+    'respaldo empírico, pois Matos et al. (2023) analisaram as denúncias de publicidade de alimentos ' +
+    'dirigida a crianças enviadas ao órgão entre 2010 e 2020 e encontraram apenas 98 casos, com tendência ' +
+    'de queda, o que indica que a autorregulação não protege quem deveria proteger. Some a isso a coleta de ' +
+    'dados, que Zuboff (2021) descreve como base de um capitalismo que lucra prevendo comportamento, e a ' +
     'responsabilidade repartida entre anunciante, agência, plataforma e influenciador. Jonas (2006) serve ' +
-    'aqui: para ele o dever cresce com a fragilidade de quem é afetado e o poder de quem age.'
+    'aqui: o dever cresce com a fragilidade de quem é afetado e o poder de quem age.'
+  ),
+  corpo(
+    'Quanto à legislação, avalio que ainda não é suficiente, embora o país tenha avançado desde 2008. Hoje ' +
+    'existem o artigo 227 da Constituição (BRASIL, 1988), o artigo 37, §2º, do Código de Defesa do ' +
+    'Consumidor (BRASIL, 1990), a Resolução nº 163 do CONANDA (2014), que considera abusiva a publicidade ' +
+    'dirigida ao público infantil, a Lei Geral de Proteção de Dados (BRASIL, 2018) e o Estatuto Digital da ' +
+    'Criança e do Adolescente (BRASIL, 2025), em vigor desde março de 2026. No papel é bastante. Na prática ' +
+    'a fiscalização é reativa e depende de denúncia, as empresas são globais enquanto a lei é nacional, e a ' +
+    'verificação de idade segue sendo a criança digitando outro ano de nascimento. Cabe às marcas a ' +
+    'responsabilidade primária, às plataformas o fim da alegação de neutralidade, aos profissionais de ' +
+    'comunicação o critério sobre o que aceitam produzir, e à escola a educação midiática.'
   ),
 
-  titulo('6. A regulamentação é suficiente?'),
+  // ---------- P8: CONSIDERACOES FINAIS E RECOMENDACAO ----------
   corpo(
-    'O trecho entre 40 e 44 minutos é o mais político do filme, e mira o CONAR (RENNER, 2008). A ' +
-    'crítica é certeira, porque se trata de autorregulação, o próprio setor publicitário julgando o setor ' +
-    'publicitário, e a sanção mais dura é recomendar que o anúncio saia do ar, normalmente depois de a ' +
-    'campanha já ter dado o retorno.'
-  ),
-  corpo(
-    'Na minha opinião a regulação não é suficiente, ainda que o país tenha avançado desde 2008. Hoje existem ' +
-    'o artigo 227 da Constituição (BRASIL, 1988), o artigo 37, §2º, do Código de Defesa do Consumidor ' +
-    '(BRASIL, 1990), a Resolução nº 163 do CONANDA (2014), que considera abusiva a publicidade dirigida ao ' +
-    'público infantil, a Lei Geral de Proteção de Dados (BRASIL, 2018) e a Lei nº 15.211/2025, o ECA ' +
-    'Digital (BRASIL, 2025). No papel é bastante. Na prática a fiscalização é reativa e depende de ' +
-    'denúncia, as empresas são globais enquanto a lei é nacional, e verificação de idade segue sendo a ' +
-    'criança digitando outro ano de nascimento. As normas ainda descrevem publicidade em termos de jingle, ' +
-    'personagem e desenho animado, categorias de televisão que não alcançam um vídeo de influenciador nem a ' +
-    'loja interna de um jogo. O próprio filme já comparava o Brasil com países que legislaram de forma mais ' +
-    'rígida, e a comparação continua constrangendo.'
+    'O maior mérito da obra foi dar nome ao que estava acontecendo: a infância virando mercado. De 2008 ' +
+    'para cá mudou o meio, não a estrutura, porque a propaganda de televisão era visível e acabava, ' +
+    'enquanto a digital não é visível e não acaba. A linguagem é acessível e o filme não exige repertório ' +
+    'prévio, o que amplia bastante seu alcance. Recomendo a obra a estudantes e profissionais de ' +
+    'comunicação, publicidade e marketing, a professores da educação básica, a profissionais de saúde e do ' +
+    'direito da criança e às próprias famílias, com uma ressalva: hoje ela precisa ser assistida também ' +
+    'como documento histórico e complementada por material sobre influenciadores digitais e economia de ' +
+    'jogos, terreno onde a publicidade infantil de fato acontece.'
   ),
 
-  titulo('7. Responsabilidades e considerações finais'),
-  corpo(
-    'A responsabilidade maior é das marcas, porque a campanha só existe se elas quiserem, e isso inclui o ' +
-    'briefing e a escolha do influenciador. As plataformas perderam o direito de se dizer neutras quando ' +
-    'passaram a recomendar conteúdo, já que recomendar é editar. Delas seria razoável exigir que não usem ' +
-    'perfis de menores para publicidade e desliguem por padrão os mecanismos de engajamento compulsivo. ' +
-    'Para quem trabalha com comunicação, competência técnica não é neutra: saber despertar desejo ' +
-    'é poder, e poder pede critério. À escola cabe a educação midiática, única resposta que forma autonomia ' +
-    'em vez de proibir.'
-  ),
-  corpo(
-    'O maior mérito do filme foi dar nome ao que estava acontecendo: a infância virando mercado. De 2008 ' +
-    'para cá mudou o meio, não a estrutura. A propaganda de televisão era visível e acabava, a digital não ' +
-    'é visível e não acaba. A pergunta que ficou comigo continua sem resposta boa: até onde é aceitável ' +
-    'usar as melhores técnicas de persuasão já inventadas contra alguém que não sabe que está sendo ' +
-    'persuadido, e ainda cobrar a conta de pais que mal têm tempo de chegar em casa acordados?'
-  ),
+  // ---------- REFERENCIAS ----------
+  tituloCentral('REFERÊNCIAS', { before: 280, after: 240 }),
 
-  titulo('Referências'),
   ref('BAUMAN, Zygmunt. Vida para consumo: a transformação das pessoas em mercadoria. Rio de Janeiro: Zahar, 2008.'),
-  ref('BRASIL. Constituição da República Federativa do Brasil de 1988. Brasília, 1988.'),
-  ref('BRASIL. Lei nº 8.078, de 11 de setembro de 1990. Código de Defesa do Consumidor. Brasília, 1990.'),
-  ref('BRASIL. Lei nº 13.709, de 14 de agosto de 2018. Lei Geral de Proteção de Dados. Brasília, 2018.'),
-  ref('BRASIL. Lei nº 15.211, de 17 de setembro de 2025. ECA Digital. Brasília, 2025.'),
-  ref('CONANDA. Resolução nº 163, de 13 de março de 2014. Brasília, 2014.'),
-  ref('JONAS, Hans. O princípio responsabilidade. Rio de Janeiro: Contraponto, 2006.'),
+  ref('BRASIL. [Constituição (1988)]. Constituição da República Federativa do Brasil de 1988. Brasília, DF: Presidência da República, 1988. Disponível em: https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm. Acesso em: 9 ago. 2026.'),
+  ref('BRASIL. Lei nº 8.078, de 11 de setembro de 1990. Dispõe sobre a proteção do consumidor e dá outras providências. Brasília, DF: Presidência da República, 1990. Disponível em: https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm. Acesso em: 9 ago. 2026.'),
+  ref('BRASIL. Lei nº 13.709, de 14 de agosto de 2018. Lei Geral de Proteção de Dados Pessoais (LGPD). Brasília, DF: Presidência da República, 2018. Disponível em: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm. Acesso em: 9 ago. 2026.'),
+  ref('BRASIL. Lei nº 15.211, de 17 de setembro de 2025. Institui o Estatuto Digital da Criança e do Adolescente. Brasília, DF: Presidência da República, 2025. Disponível em: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/L15211.htm. Acesso em: 9 ago. 2026.'),
+  ref('CONANDA. Resolução nº 163, de 13 de março de 2014. Dispõe sobre a abusividade do direcionamento de publicidade e de comunicação mercadológica à criança e ao adolescente. Brasília, DF: Conselho Nacional dos Direitos da Criança e do Adolescente, 2014. Disponível em: https://www.gov.br/mdh/pt-br/acesso-a-informacao/participacao-social/conselho-nacional-dos-direitos-da-crianca-e-do-adolescente-conanda/resolucoes/resolucao-163-_publicidade-infantil.pdf. Acesso em: 9 ago. 2026.'),
+  ref('JONAS, Hans. O princípio responsabilidade: ensaio de uma ética para a civilização tecnológica. Rio de Janeiro: Contraponto, 2006.'),
   ref('KANT, Immanuel. Fundamentação da metafísica dos costumes. São Paulo: Barcarolla, 2009.'),
-  ref('RENNER, Estela (dir.). Criança, a alma do negócio. São Paulo: Maria Farinha Filmes, 2008. 1 vídeo (49 min).'),
-  ref('ZUBOFF, Shoshana. A era do capitalismo de vigilância. Rio de Janeiro: Intrínseca, 2021.'),
+  ref('MATOS, J. P.; GONDO, M.; MOTA, L. S. E.; HORTA, P. M. Publicidade de alimentos direcionada à criança e ao adolescente no Brasil: análise longitudinal de denúncias no CONAR. Ciência & Saúde Coletiva, v. 28, n. 7, p. 1959-1970, 2023. DOI: https://doi.org/10.1590/1413-81232023287.14752022. Acesso em: 9 ago. 2026.'),
+  ref('RENNER, Estela. Criança, a alma do negócio. São Paulo: Maria Farinha Filmes, 2008. 1 vídeo (49 min), son., color. Disponível em: https://www.youtube.com/watch?v=ur9lIf4RaZ4. Acesso em: 9 ago. 2026.'),
+  ref('ZUBOFF, Shoshana. A era do capitalismo de vigilância: a luta por um futuro humano na nova fronteira do poder. Rio de Janeiro: Intrínseca, 2021.'),
 ];
 
 const doc = new Document({
