@@ -158,8 +158,9 @@ const filhos = [
 
   // ---------- P8: CONSIDERACOES FINAIS E RECOMENDACAO ----------
   corpo(
-    'O maior mérito da obra foi dar nome ao que estava acontecendo: a infância virando mercado. De 2008 ' +
-    'para cá mudou o meio, não a estrutura, porque a propaganda de televisão era visível e acabava, ' +
+    'O maior mérito da obra foi ter nomeado um processo que já estava em curso: a transformação da infância ' +
+    'em mercado consumidor. De 2008 para cá mudou o meio, não a estrutura, porque a propaganda de televisão ' +
+    'era visível e acabava, ' +
     'enquanto a digital não é visível e não acaba. A linguagem é acessível e o filme não exige repertório ' +
     'prévio, o que amplia bastante seu alcance. Recomendo a obra a estudantes e profissionais de ' +
     'comunicação, publicidade e marketing, a professores da educação básica, a profissionais de saúde e do ' +
