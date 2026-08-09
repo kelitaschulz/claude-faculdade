@@ -39,10 +39,14 @@ const tituloCentral = (texto, opts = {}) => new Paragraph({
 });
 
 // --- referencias ABNT: esquerda, simples, uma linha em branco entre elas ---
-const ref = (texto) => new Paragraph({
+// aceita string ou array de trechos; { i: true } marca a parte em italico
+const ref = (partes) => new Paragraph({
   alignment: AlignmentType.LEFT,
   spacing: { line: SIMPLES, after: 240 },
-  children: [new TextRun({ text: texto, font: FONT, size: 24 })],
+  children: (Array.isArray(partes) ? partes : [partes]).map((t) =>
+    typeof t === 'string'
+      ? new TextRun({ text: t, font: FONT, size: 24 })
+      : new TextRun({ text: t.t, font: FONT, size: 24, italics: !!t.i })),
 });
 
 const vazio = (pontos) => new Paragraph({
@@ -69,12 +73,20 @@ const filhos = [
   tituloCentral('RESENHA CRÍTICA', { after: 240 }),
 
   // ---------- DADOS BIBLIOGRAFICOS DA OBRA RESENHADA ----------
-  corpo(
-    'RENNER, Estela. Criança, a alma do negócio. São Paulo: Maria Farinha Filmes, 2008. ' +
-    '1 vídeo (49 min), son., color. Disponível em: https://www.youtube.com/watch?v=ur9lIf4RaZ4. ' +
-    'Acesso em: 9 ago. 2026.',
-    { semRecuo: true }
-  ),
+  new Paragraph({
+    alignment: AlignmentType.JUSTIFIED,
+    spacing: { line: LINE, after: 0 },
+    children: [
+      new TextRun({ text: 'RENNER, Estela. ', font: FONT, size: 24 }),
+      new TextRun({ text: 'Criança, a alma do negócio', font: FONT, size: 24, italics: true }),
+      new TextRun({
+        text: '. Produção de Marcos Nisti. São Paulo: Maria Farinha Filmes, 2008. '
+            + '1 vídeo (49 min), son., color. Disponível em: '
+            + 'https://www.youtube.com/watch?v=ur9lIf4RaZ4. Acesso em: 7 ago. 2026.',
+        font: FONT, size: 24,
+      }),
+    ],
+  }),
 
   vazio(),
 
@@ -170,17 +182,17 @@ const filhos = [
   // ---------- REFERENCIAS ----------
   tituloCentral('REFERÊNCIAS', { before: 280, after: 240 }),
 
-  ref('BAUMAN, Zygmunt. Vida para consumo: a transformação das pessoas em mercadoria. Rio de Janeiro: Zahar, 2008.'),
-  ref('BRASIL. [Constituição (1988)]. Constituição da República Federativa do Brasil de 1988. Brasília, DF: Presidência da República, 1988. Disponível em: https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm. Acesso em: 9 ago. 2026.'),
-  ref('BRASIL. Lei nº 8.078, de 11 de setembro de 1990. Dispõe sobre a proteção do consumidor e dá outras providências. Brasília, DF: Presidência da República, 1990. Disponível em: https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm. Acesso em: 9 ago. 2026.'),
-  ref('BRASIL. Lei nº 13.709, de 14 de agosto de 2018. Lei Geral de Proteção de Dados Pessoais (LGPD). Brasília, DF: Presidência da República, 2018. Disponível em: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm. Acesso em: 9 ago. 2026.'),
-  ref('BRASIL. Lei nº 15.211, de 17 de setembro de 2025. Institui o Estatuto Digital da Criança e do Adolescente. Brasília, DF: Presidência da República, 2025. Disponível em: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/L15211.htm. Acesso em: 9 ago. 2026.'),
-  ref('CONANDA. Resolução nº 163, de 13 de março de 2014. Dispõe sobre a abusividade do direcionamento de publicidade e de comunicação mercadológica à criança e ao adolescente. Brasília, DF: Conselho Nacional dos Direitos da Criança e do Adolescente, 2014. Disponível em: https://www.gov.br/mdh/pt-br/acesso-a-informacao/participacao-social/conselho-nacional-dos-direitos-da-crianca-e-do-adolescente-conanda/resolucoes/resolucao-163-_publicidade-infantil.pdf. Acesso em: 9 ago. 2026.'),
-  ref('JONAS, Hans. O princípio responsabilidade: ensaio de uma ética para a civilização tecnológica. Rio de Janeiro: Contraponto, 2006.'),
-  ref('KANT, Immanuel. Fundamentação da metafísica dos costumes. São Paulo: Barcarolla, 2009.'),
-  ref('MATOS, J. P.; GONDO, M.; MOTA, L. S. E.; HORTA, P. M. Publicidade de alimentos direcionada à criança e ao adolescente no Brasil: análise longitudinal de denúncias no CONAR. Ciência & Saúde Coletiva, v. 28, n. 7, p. 1959-1970, 2023. DOI: https://doi.org/10.1590/1413-81232023287.14752022. Acesso em: 9 ago. 2026.'),
-  ref('RENNER, Estela. Criança, a alma do negócio. São Paulo: Maria Farinha Filmes, 2008. 1 vídeo (49 min), son., color. Disponível em: https://www.youtube.com/watch?v=ur9lIf4RaZ4. Acesso em: 9 ago. 2026.'),
-  ref('ZUBOFF, Shoshana. A era do capitalismo de vigilância: a luta por um futuro humano na nova fronteira do poder. Rio de Janeiro: Intrínseca, 2021.'),
+  ref([{ t: 'BAUMAN, Zygmunt. ' }, { t: 'Vida para consumo', i: true }, { t: ': a transformação das pessoas em mercadoria. Rio de Janeiro: Zahar, 2008.' }]),
+  ref([{ t: 'BRASIL. [Constituição (1988)]. ' }, { t: 'Constituição da República Federativa do Brasil de 1988', i: true }, { t: '. Brasília, DF: Presidência da República, 1988. Disponível em: https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm. Acesso em: 7 ago. 2026.' }]),
+  ref('BRASIL. Lei nº 8.078, de 11 de setembro de 1990. Dispõe sobre a proteção do consumidor e dá outras providências. Brasília, DF: Presidência da República, 1990. Disponível em: https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm. Acesso em: 7 ago. 2026.'),
+  ref('BRASIL. Lei nº 13.709, de 14 de agosto de 2018. Dispõe sobre o tratamento de dados pessoais e altera a Lei nº 12.965, de 23 de abril de 2014 (Marco Civil da Internet). Brasília, DF: Presidência da República, 2018. Disponível em: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm. Acesso em: 7 ago. 2026.'),
+  ref('BRASIL. Lei nº 15.211, de 17 de setembro de 2025. Institui o Estatuto Digital da Criança e do Adolescente. Brasília, DF: Presidência da República, 2025. Disponível em: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/L15211.htm. Acesso em: 7 ago. 2026.'),
+  ref('CONANDA. Resolução nº 163, de 13 de março de 2014. Dispõe sobre a abusividade do direcionamento de publicidade e de comunicação mercadológica à criança e ao adolescente. Brasília, DF: CONANDA, 2014. Disponível em: https://www.gov.br/mdh/pt-br/acesso-a-informacao/participacao-social/conselho-nacional-dos-direitos-da-crianca-e-do-adolescente-conanda/resolucoes/resolucao-163-_publicidade-infantil.pdf. Acesso em: 7 ago. 2026.'),
+  ref([{ t: 'JONAS, Hans. ' }, { t: 'O princípio responsabilidade', i: true }, { t: ': ensaio de uma ética para a civilização tecnológica. Rio de Janeiro: Contraponto: Ed. PUC-Rio, 2006.' }]),
+  ref([{ t: 'KANT, Immanuel. ' }, { t: 'Fundamentação da metafísica dos costumes', i: true }, { t: '. São Paulo: Barcarolla, 2009.' }]),
+  ref([{ t: 'MATOS, J. P.; GONDO, M.; MOTA, L. S. E.; HORTA, P. M. Publicidade de alimentos direcionada à criança e ao adolescente no Brasil: análise longitudinal de denúncias no CONAR. ' }, { t: 'Ciência & Saúde Coletiva', i: true }, { t: ', Rio de Janeiro, v. 28, n. 7, p. 1959-1970, jul. 2023. DOI: 10.1590/1413-81232023287.14752022. Disponível em: https://doi.org/10.1590/1413-81232023287.14752022. Acesso em: 7 ago. 2026.' }]),
+  ref([{ t: 'RENNER, Estela. ' }, { t: 'Criança, a alma do negócio', i: true }, { t: '. Produção de Marcos Nisti. São Paulo: Maria Farinha Filmes, 2008. 1 vídeo (49 min), son., color. Disponível em: https://www.youtube.com/watch?v=ur9lIf4RaZ4. Acesso em: 7 ago. 2026.' }]),
+  ref([{ t: 'ZUBOFF, Shoshana. ' }, { t: 'A era do capitalismo de vigilância', i: true }, { t: ': a luta por um futuro humano na nova fronteira do poder. Rio de Janeiro: Intrínseca, 2021.' }]),
 ];
 
 const doc = new Document({
