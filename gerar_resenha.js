@@ -162,11 +162,12 @@ const filhos = [
     'em mercado consumidor. De 2008 para cá mudou o meio, não a estrutura, porque a propaganda de televisão ' +
     'era visível e acabava, ' +
     'enquanto a digital não é visível e não acaba. A linguagem é acessível e o filme não exige repertório ' +
-    'prévio, o que amplia bastante seu alcance. Recomendo a obra a estudantes e profissionais de ' +
-    'comunicação, publicidade e marketing, a professores da educação básica, a profissionais de saúde e do ' +
-    'direito da criança e às próprias famílias, com uma ressalva: hoje ela precisa ser assistida também ' +
-    'como documento histórico e complementada por material sobre influenciadores digitais e economia de ' +
-    'jogos, terreno onde a publicidade infantil de fato acontece.'
+    'prévio, o que amplia bastante seu alcance. A obra interessa diretamente a quem estuda ou trabalha com ' +
+    'comunicação, publicidade e marketing, mas rende também na educação básica, na saúde e no direito da ' +
+    'infância, além de valer a conversa dentro de casa. Faço uma ressalva quanto ao uso, não quanto à ' +
+    'qualidade: por ser de 2008, ela precisa ser vista como documento de época e acompanhada de material ' +
+    'sobre influenciadores digitais e economia de jogos. Isso não diminui o filme, apenas confirma que ele ' +
+    'chegou cedo a um problema que só piorou.'
   ),
 
   // ---------- REFERENCIAS ----------
