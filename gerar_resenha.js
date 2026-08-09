@@ -17,13 +17,13 @@ const corpo = (texto, opts = {}) => new Paragraph({
 
 const titulo = (texto) => new Paragraph({
   alignment: AlignmentType.LEFT,
-  spacing: { line: LINE, before: 200, after: 0 },
+  spacing: { line: LINE, before: 140, after: 0 },
   children: [new TextRun({ text: texto, font: FONT, size: 24, bold: true })],
 });
 
 const tituloPrincipal = (texto) => new Paragraph({
   alignment: AlignmentType.CENTER,
-  spacing: { line: LINE, after: 200 },
+  spacing: { line: LINE, after: 140 },
   children: [new TextRun({ text: texto, font: FONT, size: 24, bold: true })],
 });
 
@@ -46,143 +46,148 @@ const filhos = [
   tituloPrincipal('A infância como mercado: uma leitura ética de Criança, a Alma do Negócio'),
 
   corpo(
-    'CRIANÇA, a alma do negócio. Dir. Estela Renner. Maria Farinha Filmes, 2008, aprox. 50 min.',
+    'RENNER, Estela (dir.). Criança, a alma do negócio. São Paulo: Maria Farinha Filmes, 2008. ' +
+    '1 vídeo (49 min).',
     { semRecuo: true }
   ),
 
   titulo('1. Introdução'),
   corpo(
-    'Lançado em 2008, Criança, a Alma do Negócio discutia a televisão aberta, mas produziu algo mais ' +
-    'durável: um método para enxergar a publicidade infantil. O cenário técnico envelheceu; o problema ' +
-    'cresceu. Sustento que sua crítica se radicalizou no ambiente digital — a publicidade dirigida a ' +
-    'crianças é eticamente insustentável porque depende exatamente do que sua destinatária ainda não tem: ' +
-    'a capacidade de reconhecer que está sendo persuadida. A internet não corrigiu essa assimetria; ' +
-    'tornou-a invisível, contínua e personalizada.'
+    'Entrei em Criança, a Alma do Negócio esperando um filme sobre propaganda e saí pensando no que a ' +
+    'gente faz com quem ainda não sabe se defender. O documentário de Estela Renner é de 2008, e a ' +
+    'distância entre a televisão que ele retrata e o celular que as crianças usam hoje é enorme. Mesmo ' +
+    'assim o argumento continua de pé: a publicidade infantil é difícil de justificar eticamente porque ' +
+    'depende de uma coisa só, que é a criança não perceber que está sendo convencida.'
   ),
 
-  titulo('2. As críticas centrais do documentário'),
+  titulo('2. O que o filme mostra'),
   corpo(
-    'A escolha formal do filme é também sua tese: em vez de acumular especialistas, ele põe a câmera diante ' +
-    'de crianças e as deixa falar. Meninos e meninas de classes diferentes recitam jingles inteiros e ' +
-    'descrevem produtos com precisão que não demonstram diante de conteúdo escolar algum. Daí a crítica ' +
-    'cognitiva: a criança pequena não distingue programa de comercial e, quando distingue, não apreende a ' +
-    'intenção persuasiva — não se defende do que não identifica como ataque.'
+    'Logo no início, entre 1 e 3 minutos, aparece o dado que organiza o filme: cerca de 80% das decisões de ' +
+    'compra de uma casa passam pela criança (RENNER, 2008). Isso não descreve gosto infantil, descreve ' +
+    'função: a criança virou canal de venda para o orçamento da família.'
   ),
   corpo(
-    'A crítica estratégica mostra a criança em três papéis: consumidora atual, consumidora futura, pela ' +
-    'fidelização precoce à marca, e agente de pressão sobre o orçamento familiar — o que o mercado chama de ' +
-    '"fator amolação". A consequencial elenca obesidade, adultização precoce e conflito doméstico. Mais ' +
-    'desconfortáveis são as falas dos profissionais de marketing: não há vilania, há competência técnica ' +
-    'descrevendo com naturalidade a exploração de uma vulnerabilidade — racionalidade instrumental sem ' +
-    'atrito moral.'
+    'O trecho mais forte está entre 5 e 8 minutos, quando fica claro que a publicidade não vende o produto, ' +
+    'vende pertencimento. A promessa não é o brinquedo, é ser aceito por causa dele. Bauman (2008) descreve ' +
+    'esse movimento ao mostrar uma sociedade em que as pessoas viram mercadoria e se validam pelo que ' +
+    'exibem.'
   ),
   corpo(
-    'O filme tem limites: é mais forte no diagnóstico que na proposta e trata a família de modo ' +
-    'indiferenciado, sem examinar as condições materiais que tornam a mediação parental muito mais difícil ' +
-    'para umas do que para outras. Ainda assim, para acusar, basta-lhe mostrar.'
+    'O filme então acumula prova. Dos 13 aos 16 minutos aparecem crianças cercadas de brinquedos que nem ' +
+    'conseguem usar. Entre 18 e 20 minutos, com a psicóloga Julia Marques, a discussão vai para a pressão ' +
+    'do grupo: o consumo decide quem entra e quem fica de fora, e o resultado é uma padronização de festas ' +
+    'e roupas que sufoca o que diferencia uma criança da outra.'
   ),
 
-  titulo('3. O que a internet mudou'),
+  titulo('3. Os pais também estão no alvo'),
   corpo(
-    'A televisão oferecia uma moldura: o comercial tinha começo, fim e bloco próprio, o que tornava possível ' +
-    'ensinar a criança a reconhecê-lo. No digital ela desapareceu, porque a publicidade deixou de ' +
-    'interromper o conteúdo para se tornar o conteúdo. Outros três deslocamentos importam. Da audiência ao ' +
-    'dado: a criança virou fonte de informação comportamental que alimenta perfis. Da massa à ' +
-    'personalização: a mensagem se ajusta às fragilidades de uma criança específica. E a ubiquidade — o TIC ' +
-    'Kids Online Brasil aponta que quase todas as crianças e adolescentes brasileiros estão conectados, ' +
-    'sobretudo pelo celular, aparelho pessoal fora da supervisão que a televisão da sala permitia. Não há ' +
-    'mais intervalo comercial porque não há intervalo.'
+    'Entre 21 e 23 minutos o documentário olha para os pais e fala em culpa e falta de tempo, com o presente ' +
+    'ocupando o lugar da presença (RENNER, 2008). Concordo com o diagnóstico, mas o filme para cedo: ' +
+    'descreve o comportamento dos pais sem perguntar o que o produziu.'
+  ),
+  corpo(
+    'Quem cede não está sendo permissivo por preguiça, está comprimido por uma jornada que não deixa espaço ' +
+    'para muito mais. Um adulto que sai cedo, volta à noite e ainda leva serviço para o fim de semana não ' +
+    'tem como disputar atenção com uma tela ligada o dia inteiro. Comprar vira a forma disponível de dizer ' +
+    'que se importa. Chamar isso de fracasso individual é ignorar que a mesma lógica que vende para a ' +
+    'criança é a que consome o tempo do pai.'
+  ),
+  corpo(
+    'Por isso me parece equivocado tratar a família como linha de defesa principal. Ela é o elo mais fraco ' +
+    'da corrente, e é por isso que o mercado mira nela. Dizer que basta os pais dizerem não converte um ' +
+    'problema estrutural em falha de caráter, e esse deslocamento pesa sobre quem tem menos tempo e menos ' +
+    'dinheiro. Acompanhar é dever, mas exigir que a família resolva sozinha é passar ao mais fraco a ' +
+    'responsabilidade do mais forte.'
   ),
 
-  titulo('4. Influenciadores, jogos e aplicativos'),
+  titulo('4. Da televisão para a tela do celular'),
   corpo(
-    'Os influenciadores são a mutação mais eficaz do modelo: a publicidade migrou da interrupção para o ' +
-    'vínculo afetivo. A criança não vê um anunciante, vê alguém que percebe como amigo e em quem confia. ' +
-    'Vídeos de unboxing são anúncios de meia hora que ela escolhe assistir, repetidamente. Quando o ' +
-    'influenciador é ele mesmo uma criança, ela deixa de ser apenas alvo e vira instrumento de venda para ' +
-    'outras crianças.'
+    'É aqui que o filme mostra a idade. Em 2008 o comercial tinha moldura: começava, terminava e ocupava um ' +
+    'bloco separado, coisa que dava para ensinar uma criança a reconhecer. Essa borda sumiu, e hoje a ' +
+    'publicidade não interrompe o conteúdo, ela é o conteúdo.'
   ),
   corpo(
-    'Os jogos operam por outro mecanismo. Moedas virtuais como Robux, V-Bucks ou diamantes dissociam preço ' +
-    'de valor, tornando o gasto abstrato para quem mal domina a noção de dinheiro. Caixas de recompensa ' +
-    'funcionam por reforço intermitente variável, a arquitetura psicológica das máquinas de apostas. Passes ' +
-    'de temporada fabricam escassez; skins convertem pertencimento em compra. Aplicativos completam o ' +
-    'quadro com reprodução automática, rolagem infinita e sequências de dias, desenhados para maximizar o ' +
-    'tempo de tela — a matéria-prima vendida ao anunciante.'
+    'Mudou também de onde ela vem. Não é mais a campanha de uma grande marca em horário nobre, é um vídeo no ' +
+    'YouTube ou no TikTok feito por alguém que a criança acompanha todo dia. Luccas Neto é o caso mais ' +
+    'evidente no Brasil, com plateia de milhões de crianças e produtos licenciados próprios. O pai que ' +
+    'enfrenta o pedido do filho não negocia com um anunciante, e sim com alguém em quem a criança confia, e ' +
+    'que ela vê mais vezes por semana do que vê o próprio pai acordado.'
+  ),
+  corpo(
+    'Os jogos seguem outro caminho. Robux, V-Bucks e diamantes afastam o preço do valor. Caixa de recompensa ' +
+    'repete a lógica de prêmio aleatório das máquinas de apostas, passe de temporada fabrica pressa e skin ' +
+    'transforma pertencer em compra. É a mesma pressão de grupo dos 18 minutos do filme, agora num sistema ' +
+    'de pagamento aberto a qualquer hora.'
   ),
 
-  titulo('5. Os desafios éticos'),
+  titulo('5. Saúde e desafios éticos'),
   corpo(
-    'O primeiro é o consentimento: toda relação de consumo eticamente defensável pressupõe um agente ' +
-    'informado e capaz de decidir, e a criança não é esse agente. A publicidade infantil não é uma relação ' +
-    'de consumo mal protegida — é uma relação à qual falta o próprio pressuposto ético. O segundo é a ' +
-    'instrumentalização: na formulação kantiana, a pessoa deve ser tratada sempre também como fim, nunca ' +
-    'apenas como meio, e o marketing infantil converte a criança em canal de acesso ao orçamento familiar.'
+    'Dos 36 aos 38 minutos o filme entra na saúde e o argumento vira dado. A ligação entre publicidade de ' +
+    'ultraprocessado, sedentarismo e obesidade infantil tira o assunto do terreno da escolha individual: ' +
+    'não foi a criança que escolheu mal, foi uma estratégia de marketing produzindo um problema de saúde ' +
+    'pública.'
   ),
   corpo(
-    'O terceiro, e o mais decisivo, é a opacidade: essa publicidade só funciona enquanto não é percebida ' +
-    'como tal. Uma prática cuja eficácia depende do desconhecimento de quem a recebe não sobrevive à ' +
-    'divulgação dos próprios métodos — por isso o documentário incomoda apenas exibindo o que existe. O ' +
-    'quarto é a vigilância: perfilar uma criança é modelar quem ainda está se constituindo como sujeito. O ' +
-    'quinto é a diluição da responsabilidade entre anunciante, agência, plataforma e influenciador. Vale ' +
-    'Hans Jonas: quanto maior a vulnerabilidade do afetado e o poder de quem age, mais extenso é o dever — ' +
-    'não menos, como a fragmentação sugere.'
+    'No plano ético, o problema mais básico é o consentimento. Qualquer relação de consumo ética supõe ' +
+    'alguém informado, capaz de avaliar e recusar, e criança não é isso. Vem depois a instrumentalização: ' +
+    'se a pessoa deve ser tratada sempre também como fim e nunca apenas como meio (KANT, 2009), aqueles 80% ' +
+    'da abertura dizem tudo. Mais grave, porém, é que essa publicidade só rende enquanto passa ' +
+    'despercebida. Uma prática que depende da ignorância de quem a recebe não sobreviveria se seus métodos ' +
+    'fossem ditos em voz alta, e é por isso que o filme incomoda sem acusar ninguém. Some a isso a coleta ' +
+    'de dados, que Zuboff (2021) descreve como base de um capitalismo que lucra prevendo comportamento, e a ' +
+    'responsabilidade repartida entre anunciante, agência, plataforma e influenciador. Jonas (2006) serve ' +
+    'aqui: para ele o dever cresce com a fragilidade de quem é afetado e o poder de quem age.'
   ),
 
   titulo('6. A regulamentação é suficiente?'),
   corpo(
-    'Na minha avaliação, a regulação brasileira é razoável no papel e insuficiente na prática. O arcabouço ' +
-    'não é pequeno: o artigo 227 da Constituição estabelece a proteção integral; o Código de Defesa do ' +
-    'Consumidor, no artigo 37, §2º, considera abusiva a publicidade que se aproveita da deficiência de ' +
-    'julgamento e experiência da criança; a Resolução nº 163/2014 do CONANDA declara abusiva a publicidade ' +
-    'dirigida ao público infantil; a LGPD restringe o tratamento de dados de crianças; e a Lei nº ' +
-    '15.211/2025, o "ECA Digital", passou a exigir das plataformas verificação de idade e vinculação das ' +
-    'contas de menores às dos responsáveis.'
+    'O trecho entre 40 e 44 minutos é o mais político do filme, e mira o CONAR (RENNER, 2008). A ' +
+    'crítica é certeira, porque se trata de autorregulação, o próprio setor publicitário julgando o setor ' +
+    'publicitário, e a sanção mais dura é recomendar que o anúncio saia do ar, normalmente depois de a ' +
+    'campanha já ter dado o retorno.'
   ),
   corpo(
-    'A distância está entre norma e efeito. A fiscalização é reativa e depende de denúncia, chegando depois ' +
-    'de a campanha cumprir seu objetivo. O CONAR é autorregulação: o setor julga a si mesmo, com sanção ' +
-    'máxima de recomendação de sustação. As plataformas são globais e a jurisdição é nacional; a ' +
-    'verificação de idade segue autodeclarada. E há falha de desenho: nossas normas descrevem publicidade ' +
-    'com categorias televisivas — jingle, personagem, desenho animado — que se encaixam mal no vídeo de um ' +
-    'influenciador ou na loja interna de um jogo. Enquanto o negócio for a monetização da atenção, cada ' +
-    'regra corrigirá um sintoma e a causa seguirá intacta. Suécia e Noruega proíbem publicidade dirigida a ' +
-    'menores há décadas: proibir é possível.'
+    'Na minha opinião a regulação não é suficiente, ainda que o país tenha avançado desde 2008. Hoje existem ' +
+    'o artigo 227 da Constituição (BRASIL, 1988), o artigo 37, §2º, do Código de Defesa do Consumidor ' +
+    '(BRASIL, 1990), a Resolução nº 163 do CONANDA (2014), que considera abusiva a publicidade dirigida ao ' +
+    'público infantil, a Lei Geral de Proteção de Dados (BRASIL, 2018) e a Lei nº 15.211/2025, o ECA ' +
+    'Digital (BRASIL, 2025). No papel é bastante. Na prática a fiscalização é reativa e depende de ' +
+    'denúncia, as empresas são globais enquanto a lei é nacional, e verificação de idade segue sendo a ' +
+    'criança digitando outro ano de nascimento. As normas ainda descrevem publicidade em termos de jingle, ' +
+    'personagem e desenho animado, categorias de televisão que não alcançam um vídeo de influenciador nem a ' +
+    'loja interna de um jogo. O próprio filme já comparava o Brasil com países que legislaram de forma mais ' +
+    'rígida, e a comparação continua constrangendo.'
   ),
 
   titulo('7. Responsabilidades e considerações finais'),
   corpo(
-    'A responsabilidade primária é das marcas, porque a decisão de existir a campanha é delas — o que inclui ' +
-    'responder pela cadeia inteira, do briefing à escolha do influenciador. As plataformas deixaram de ser ' +
-    'neutras quando passaram a recomendar conteúdo: quem ordena, edita, e quem edita responde. Delas se ' +
-    'exige não perfilar menores para fins publicitários, desativar por padrão o engajamento compulsivo e ' +
-    'abrir-se a auditoria independente. Aos profissionais da comunicação cabe o núcleo ético: saber ' +
-    'construir desejo é poder, e poder exige critério — o direito de recusa precisa ser parte legítima do ' +
-    'ofício, não insubordinação.'
+    'A responsabilidade maior é das marcas, porque a campanha só existe se elas quiserem, e isso inclui o ' +
+    'briefing e a escolha do influenciador. As plataformas perderam o direito de se dizer neutras quando ' +
+    'passaram a recomendar conteúdo, já que recomendar é editar. Delas seria razoável exigir que não usem ' +
+    'perfis de menores para publicidade e desliguem por padrão os mecanismos de engajamento compulsivo. ' +
+    'Para quem trabalha com comunicação, competência técnica não é neutra: saber despertar desejo ' +
+    'é poder, e poder pede critério. À escola cabe a educação midiática, única resposta que forma autonomia ' +
+    'em vez de proibir.'
   ),
   corpo(
-    'As famílias têm o dever de mediação, mas é preciso recusar a transferência integral do problema para ' +
-    'os pais. "Cabe aos pais dizer não" é o argumento preferido do setor porque individualiza um problema ' +
-    'estrutural e penaliza mais as famílias com menos tempo e recursos — as que o documentário mostra mais ' +
-    'frágeis. A mediação parental é necessária e insuficiente. À escola cabe a educação midiática, única ' +
-    'resposta que constrói autonomia em vez de apenas restringir.'
-  ),
-  corpo(
-    'O maior mérito do documentário foi nomear a operação em curso: a conversão da infância em mercado. ' +
-    'Mudou o meio — a publicidade televisiva era visível e finita, a digital é invisível e contínua —, não ' +
-    'a estrutura. A pergunta ética do filme segue sem resposta: até que ponto é legítimo mobilizar as ' +
-    'técnicas de persuasão mais sofisticadas já criadas contra alguém que não sabe que está sendo ' +
-    'persuadido? Uma sociedade que responde "depende dos pais" já respondeu — e respondeu mal.'
+    'O maior mérito do filme foi dar nome ao que estava acontecendo: a infância virando mercado. De 2008 ' +
+    'para cá mudou o meio, não a estrutura. A propaganda de televisão era visível e acabava, a digital não ' +
+    'é visível e não acaba. A pergunta que ficou comigo continua sem resposta boa: até onde é aceitável ' +
+    'usar as melhores técnicas de persuasão já inventadas contra alguém que não sabe que está sendo ' +
+    'persuadido, e ainda cobrar a conta de pais que mal têm tempo de chegar em casa acordados?'
   ),
 
   titulo('Referências'),
-  ref('BRASIL. Código de Defesa do Consumidor. Lei nº 8.078/1990. Brasília, 1990.'),
-  ref('BRASIL. Lei Geral de Proteção de Dados. Lei nº 13.709/2018. Brasília, 2018.'),
-  ref('BRASIL. ECA Digital. Lei nº 15.211/2025. Brasília, 2025.'),
+  ref('BAUMAN, Zygmunt. Vida para consumo: a transformação das pessoas em mercadoria. Rio de Janeiro: Zahar, 2008.'),
+  ref('BRASIL. Constituição da República Federativa do Brasil de 1988. Brasília, 1988.'),
+  ref('BRASIL. Lei nº 8.078, de 11 de setembro de 1990. Código de Defesa do Consumidor. Brasília, 1990.'),
+  ref('BRASIL. Lei nº 13.709, de 14 de agosto de 2018. Lei Geral de Proteção de Dados. Brasília, 2018.'),
+  ref('BRASIL. Lei nº 15.211, de 17 de setembro de 2025. ECA Digital. Brasília, 2025.'),
   ref('CONANDA. Resolução nº 163, de 13 de março de 2014. Brasília, 2014.'),
-  ref('CRIANÇA, a alma do negócio. Dir. Estela Renner. São Paulo: Maria Farinha, 2008.'),
   ref('JONAS, Hans. O princípio responsabilidade. Rio de Janeiro: Contraponto, 2006.'),
-  ref('KANT, I. Fundamentação da metafísica dos costumes. São Paulo: Barcarolla, 2009.'),
+  ref('KANT, Immanuel. Fundamentação da metafísica dos costumes. São Paulo: Barcarolla, 2009.'),
+  ref('RENNER, Estela (dir.). Criança, a alma do negócio. São Paulo: Maria Farinha Filmes, 2008. 1 vídeo (49 min).'),
+  ref('ZUBOFF, Shoshana. A era do capitalismo de vigilância. Rio de Janeiro: Intrínseca, 2021.'),
 ];
 
 const doc = new Document({
