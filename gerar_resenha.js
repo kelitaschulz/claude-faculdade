@@ -165,9 +165,9 @@ const filhos = [
     'prévio, o que amplia bastante seu alcance. A obra interessa diretamente a quem estuda ou trabalha com ' +
     'comunicação, publicidade e marketing, mas rende também na educação básica, na saúde e no direito da ' +
     'infância, além de valer a conversa dentro de casa. Faço uma ressalva quanto ao uso, não quanto à ' +
-    'qualidade: por ser de 2008, ela precisa ser vista como documento de época e acompanhada de material ' +
-    'sobre influenciadores digitais e economia de jogos. Isso não diminui o filme, apenas confirma que ele ' +
-    'chegou cedo a um problema que só piorou.'
+    'qualidade: por ser de 2008, ela precisa ser vista como documento de época e discutida junto com o que ' +
+    'a publicidade infantil se tornou nos canais de influenciadores e nas compras dentro dos jogos. Isso ' +
+    'não diminui o filme, apenas confirma que ele chegou cedo a um problema que só piorou.'
   ),
 
   // ---------- REFERENCIAS ----------
