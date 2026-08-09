@@ -158,16 +158,13 @@ const filhos = [
 
   // ---------- P8: CONSIDERACOES FINAIS E RECOMENDACAO ----------
   corpo(
-    'O maior mérito da obra foi ter nomeado um processo que já estava em curso: a transformação da infância ' +
-    'em mercado consumidor. De 2008 para cá mudou o meio, não a estrutura, porque a propaganda de televisão ' +
-    'era visível e acabava, ' +
-    'enquanto a digital não é visível e não acaba. A linguagem é acessível e o filme não exige repertório ' +
-    'prévio, o que amplia bastante seu alcance. A obra interessa diretamente a quem estuda ou trabalha com ' +
-    'comunicação, publicidade e marketing, mas rende também na educação básica, na saúde e no direito da ' +
-    'infância, além de valer a conversa dentro de casa. Faço uma ressalva quanto ao uso, não quanto à ' +
-    'qualidade: por ser de 2008, ela precisa ser vista como documento de época e discutida junto com o que ' +
-    'a publicidade infantil se tornou nos canais de influenciadores e nas compras dentro dos jogos. Isso ' +
-    'não diminui o filme, apenas confirma que ele chegou cedo a um problema que só piorou.'
+    'O maior mérito da obra foi ter nomeado a transformação da infância em mercado consumidor quando o ' +
+    'assunto ainda era pouco discutido no Brasil. De 2008 para cá o meio mudou, mas a estrutura continua a ' +
+    'mesma, porque a propaganda de televisão era visível e tinha hora para acabar, enquanto a digital não ' +
+    'tem. O filme usa linguagem acessível e não exige repertório prévio, o que o torna recomendável para ' +
+    'quem estuda ou trabalha com comunicação, educação, saúde e direito da infância, e também para as ' +
+    'famílias. Como é de 2008, hoje ele precisa ser discutido junto com o que a publicidade infantil se ' +
+    'tornou nos canais de influenciadores e nas compras dentro dos jogos.'
   ),
 
   // ---------- REFERENCIAS ----------
