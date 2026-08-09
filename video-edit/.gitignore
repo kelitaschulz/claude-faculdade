@@ -1,0 +1,4 @@
+node_modules/
+out/
+# fonte pre-processada gerada por scripts/prepare-source.mjs
+public/source.mp4
