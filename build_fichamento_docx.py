@@ -63,10 +63,10 @@ def main() -> None:
     doc = Document()
 
     sec = doc.sections[0]
-    sec.orientation = WD_ORIENT.LANDSCAPE
-    sec.page_width, sec.page_height = Emu(841.89 * PT), Emu(595.28 * PT)
+    sec.orientation = WD_ORIENT.PORTRAIT
+    sec.page_width, sec.page_height = Emu(595.28 * PT), Emu(841.89 * PT)
     sec.left_margin = Emu(56 * PT)
-    sec.right_margin = Emu(58 * PT)
+    sec.right_margin = Emu(56 * PT)
     sec.top_margin = Emu(56 * PT)
     sec.bottom_margin = Emu(42 * PT)
     sec.header_distance = Emu(0)
@@ -75,7 +75,7 @@ def main() -> None:
     hp = sec.header.paragraphs[0]
     hp.alignment = WD_ALIGN_PARAGRAPH.LEFT
     hp.paragraph_format.space_after = Pt(0)
-    hp.add_run().add_picture(str(_f.HEADER_PNG), width=Emu(841.89 * PT))
+    hp.add_run().add_picture(str(_f.HEADER_PNG), width=Emu(595.28 * PT))
 
     normal = doc.styles["Normal"]
     normal.font.name = "Arial"
@@ -105,12 +105,13 @@ def main() -> None:
     r.bold = True
     r.font.size = Pt(12)
 
-    tabela = doc.add_table(rows=1, cols=3)
+    tabela = doc.add_table(rows=1, cols=2)
     tabela.alignment = WD_TABLE_ALIGNMENT.CENTER
     tabela.autofit = False
 
-    larguras = [Emu(62.5 * PT), Emu(298 * PT), Emu(367 * PT)]
-    cabecalhos = ["PÁGINA", "CITAÇÃO", "COMENTÁRIOS, IDEIAS E ASSOCIAÇÕES SOBRE O TEXTO"]
+    # 12% e 88% da largura util (595,28 - 56 - 56 = 483,28 pt)
+    larguras = [Emu(58 * PT), Emu(425.28 * PT)]
+    cabecalhos = ["PÁGINA", "CITAÇÃO"]
 
     hdr = tabela.rows[0]
     set_repeat_header(hdr)
@@ -118,13 +119,14 @@ def main() -> None:
         cel.width = larg
         write_cell(cel, texto, size=11, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER)
 
-    for pagina, citacao, comentario in _f.LINHAS:
+    # Fichamento de citacoes: o comentario continua na fonte de dados,
+    # mas nao e escrito no documento.
+    for pagina, citacao, _comentario in _f.LINHAS:
         linha = tabela.add_row()
-        c0, c1, c2 = linha.cells
-        c0.width, c1.width, c2.width = larguras
-        write_cell(c0, pagina, size=10, align=WD_ALIGN_PARAGRAPH.CENTER)
-        write_cell(c1, citacao, size=10)
-        write_cell(c2, comentario, size=10)
+        c0, c1 = linha.cells
+        c0.width, c1.width = larguras
+        write_cell(c0, pagina, size=10.5, align=WD_ALIGN_PARAGRAPH.CENTER)
+        write_cell(c1, citacao, size=10.5)
 
     doc.save(OUT_DOCX)
     print(f"gerado: {OUT_DOCX.name} ({len(_f.LINHAS)} linhas)")

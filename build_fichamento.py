@@ -226,19 +226,20 @@ LINHAS = [
 
 CSS = """
 @page {
-  size: A4 landscape;
-  margin: 56pt 58pt 42pt 56pt;
+  size: A4 portrait;
+  margin: 56pt 56pt 42pt 56pt;
 }
 
 /* Faixa institucional Campo Real, repetida no topo de todas as paginas.
    Em position:fixed o WeasyPrint ancora no inicio da area de conteudo,
-   por isso o deslocamento negativo equivalente as margens da pagina. */
+   por isso o deslocamento negativo equivalente as margens da pagina.
+   A altura acompanha a proporcao original da faixa (841,89 x 48 pt). */
 .faixa {
   position: fixed;
   top: -56pt;
   left: -56pt;
-  width: 841.89pt;
-  height: 48pt;
+  width: 595.28pt;
+  height: 33.94pt;
   background-image: url('data:image/png;base64,__HEADER__');
   background-repeat: no-repeat;
   background-position: top left;
@@ -249,8 +250,8 @@ CSS = """
 
 body {
   font-family: "Liberation Sans", Arial, Helvetica, sans-serif;
-  font-size: 10pt;
-  line-height: 1.55;
+  font-size: 10.5pt;
+  line-height: 1.5;
   color: #000000;
   margin: 0;
 }
@@ -301,11 +302,10 @@ table.fichamento thead th {
 
 table.fichamento tbody tr { break-inside: avoid; page-break-inside: avoid; }
 
-th.pagina,    td.pagina     { width: 8.6%;  text-align: center; }
-th.citacao,   td.citacao    { width: 41.0%; }
-th.comentario,td.comentario { width: 50.4%; }
+th.pagina,  td.pagina  { width: 12%; text-align: center; }
+th.citacao, td.citacao { width: 88%; }
 
-td.citacao, td.comentario { text-align: justify; }
+td.citacao { text-align: justify; }
 """
 
 
@@ -318,13 +318,15 @@ def build_html() -> str:
         for rot, val in IDENTIFICACAO
     )
 
+    # Fichamento de citacoes: apenas pagina e citacao literal.
+    # O terceiro elemento de LINHAS (comentario) fica preservado na fonte de
+    # dados, mas nao e renderizado.
     linhas = []
-    for pagina, citacao, comentario in LINHAS:
+    for pagina, citacao, _comentario in LINHAS:
         linhas.append(
             "      <tr>\n"
             f'        <td class="pagina">{html.escape(pagina)}</td>\n'
             f'        <td class="citacao">{html.escape(citacao)}</td>\n'
-            f'        <td class="comentario">{html.escape(comentario)}</td>\n'
             "      </tr>"
         )
     corpo = "\n".join(linhas)
@@ -355,7 +357,6 @@ def build_html() -> str:
       <tr>
         <th class="pagina">PÁGINA</th>
         <th class="citacao">CITAÇÃO</th>
-        <th class="comentario">COMENTÁRIOS, IDEIAS E ASSOCIAÇÕES SOBRE O TEXTO</th>
       </tr>
     </thead>
     <tbody>
