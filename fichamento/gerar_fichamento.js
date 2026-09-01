@@ -20,7 +20,7 @@ const doc = new Document({
 
 TITULO("FICHAMENTO — O ESTUDO DE CASO CLÍNICO NA TERAPIA COGNITIVO-COMPORTAMENTAL: O QUE É E COMO SE CONSTRÓI"),
 
-P("O estudo de caso é a investigação detalhada de um caso único, seja uma pessoa, um grupo ou uma situação, construída a partir de observação clínica, entrevistas, questionários, testes e registros como o prontuário (IBAC, 2024). Seu valor na formação não está no volume de informação reunida, mas em tornar visível o percurso do raciocínio: o que o clínico observou, como isso levou à interpretação do caso e como se chegou às intervenções escolhidas. Um caso bem escrito é aquele cujo raciocínio o leitor consegue refazer, e essa exigência organiza tudo o mais."),
+P("O estudo de caso é a investigação detalhada de um caso único, seja uma pessoa, um grupo ou uma situação, construída a partir de observação clínica, entrevistas, questionários, testes e registros como o prontuário (IBAC, 2024). Seu valor na formação não está no volume de informação reunida, mas em tornar visível o percurso do raciocínio clínico. Dito de outro modo: um estudo de caso está bem feito quando outro psicólogo, ao lê-lo, consegue entender por que aquelas hipóteses foram levantadas e por que aquelas intervenções foram escolhidas. É essa exigência que explica cada uma das etapas descritas a seguir."),
 
 P("A primeira consequência é que copiar o prontuário não produz um estudo de caso. Canguçu (2021, p. 20) afirma que construir um caso “não consiste em descrições protocolares nem se reduz a registros de prontuários”, e condensa a diferença numa frase: “ter um paciente não é o mesmo que ter um caso clínico – por isso, o caso precisa necessariamente ser construído”. Escrever o caso é um segundo trabalho, distinto de atender."),
 
