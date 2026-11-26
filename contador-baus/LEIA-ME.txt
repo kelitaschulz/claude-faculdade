@@ -1,0 +1,18 @@
+CONTADOR DE BAUS - FORTNITE
+
+1. Instale o AutoHotkey v2 (gratis): https://www.autohotkey.com
+2. Coloque o ContadorBaus.ahk numa pasta e de dois cliques nele
+3. No Fortnite: Configuracoes > Video > Modo de janela = "Tela cheia em janela"
+   (no modo Tela cheia normal o contador fica escondido)
+
+TECLAS
+F8  = +1 bau
+F7  = -1 bau (se apertou errado)
+F9  = terminou a partida (salva e zera)
+F10 = esconder ou mostrar o contador
+F11 = abrir o historico no Excel
+F12 = resumo de hoje e geral
+
+O historico fica no arquivo historico_baus.csv, na mesma pasta.
+Se fechar o script no meio da partida, ela e salva sozinha.
+Se o F8 ja for usado no jogo, troque no arquivo .ahk (linha "*F8::").
