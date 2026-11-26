@@ -1,4 +1,4 @@
-; ===== Contador de Baus - Fortnite =====
+﻿; ===== Contador de Baus - Fortnite =====
 ; Precisa do AutoHotkey v2 (gratis): https://www.autohotkey.com
 ;
 ; F8  = +1 bau
@@ -21,15 +21,35 @@ if !FileExist(HIST)
     FileAppend("data;hora;baus;duracao_min`n", HIST, "UTF-8")
 
 ; ---- janelinha por cima do jogo (nao rouba clique) ----
+global W := 230, H := 150
+global GOLD := "FFC83D"
 g := Gui("+AlwaysOnTop -Caption +ToolWindow +E0x20")
-g.BackColor := "101010"
-g.MarginX := 14, g.MarginY := 8
-g.SetFont("s22 bold cFFD24A", "Segoe UI")
-txtMain := g.Add("Text", "w240 Center", "Baus: 0")
-g.SetFont("s10 norm cCCCCCC", "Segoe UI")
-txtSub := g.Add("Text", "w240 Center", "")
-g.Show("x20 y220 NoActivate")
-WinSetTransparent(210, g.Hwnd)
+g.BackColor := "1B1230"
+g.MarginX := 0, g.MarginY := 0
+
+; faixa dourada no topo
+g.Add("Progress", "x0 y0 w" W " h5 Background" GOLD)
+
+; titulo
+g.SetFont("s10 bold cB9A8E6", "Segoe UI")
+g.Add("Text", "x0 y14 w" W " Center BackgroundTrans", "🎁  BAÚS DA PARTIDA")
+
+; numero grande
+g.SetFont("s38 bold c" GOLD, "Segoe UI Black")
+txtMain := g.Add("Text", "x0 y32 w" W " h62 Center BackgroundTrans", "0")
+
+; divisoria
+g.Add("Progress", "x30 y100 w" (W-60) " h1 Background3A2C5C")
+
+; rodape
+g.SetFont("s9 norm cD8D0F0", "Segoe UI")
+txtSub := g.Add("Text", "x0 y108 w" W " Center BackgroundTrans", "")
+g.SetFont("s8 norm c8A7BB0", "Segoe UI")
+txtRec := g.Add("Text", "x0 y128 w" W " Center BackgroundTrans", "")
+
+g.Show("x20 y220 w" W " h" H " NoActivate")
+WinSetRegion("0-0 w" W " h" H " R22-22", g.Hwnd)
+WinSetTransparent(225, g.Hwnd)
 Refresh()
 
 OnExit(SaveOnExit)
@@ -45,6 +65,7 @@ Add(n) {
     global match
     match := Max(0, match + n)
     Refresh()
+    Flash(n > 0 ? "FFFFFF" : "FF6B6B")
 }
 
 EndMatch() {
@@ -53,7 +74,8 @@ EndMatch() {
     match := 0
     startTime := A_Now
     Refresh()
-    ToolTip("Partida salva!", 20, 190)
+    Flash("6BFFB0")
+    ToolTip("✔ Partida salva!", 20, 190)
     SetTimer(() => ToolTip(), -1500)
 }
 
@@ -89,10 +111,17 @@ Stats() {
 }
 
 Refresh() {
-    global match, txtMain, txtSub
+    global match, txtMain, txtSub, txtRec
     s := Stats()
-    txtMain.Value := "Baus: " match
-    txtSub.Value := "Hoje: " (s.tBaus + match) " baus | " s.tPart " partidas"
+    txtMain.Value := match
+    txtSub.Value := "Hoje: " (s.tBaus + match) " baús  •  " s.tPart " partidas"
+    txtRec.Value := "🏆 Recorde: " Max(s.best, match) " baús"
+}
+
+Flash(color) {
+    global txtMain, GOLD
+    txtMain.SetFont("c" color)
+    SetTimer(() => txtMain.SetFont("c" GOLD), -250)
 }
 
 ToggleGui() {
